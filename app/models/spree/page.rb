@@ -1,7 +1,6 @@
 class Spree::Page < ActiveRecord::Base
   
   class << self
-  
     def find_by_path(_path)
       return super('/') if _path == "_home_" && self.exists?(:path => "/")
       super _path.to_s.sub(/^\/*/, "/").gsub("--", "/")
@@ -9,17 +8,16 @@ class Spree::Page < ActiveRecord::Base
 
   end
   
-  attr_accessible :title, :path, :nav_title, :meta_title, :meta_description, :meta_keywords, :accessible, :visible
   alias_attribute :name, :title
   
   validates_presence_of :title
   validates :path, :presence => true, :uniqueness => { :case_sensitive => false }
     
-  scope :active,  where(:accessible => true)
-  scope :visible, active.where(:visible => true)
+  scope :active, ->{ where(:accessible => true) }
+  scope :visible, ->{ active.where(:visible => true) }
   
-  has_many :contents, :order => :position, :dependent => :destroy
-  has_many :images, :as => :viewable, :class_name => "Spree::PageImage", :order => :position, :dependent => :destroy
+  has_many :contents, ->{ order(:position) }, :dependent => :destroy
+  has_many :images, ->{ order(:position) }, :as => :viewable, :class_name => "Spree::PageImage", :dependent => :destroy
   
   before_validation :set_defaults
   after_create :create_default_content

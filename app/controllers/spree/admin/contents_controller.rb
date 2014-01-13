@@ -20,19 +20,19 @@ class Spree::Admin::ContentsController < Spree::Admin::ResourceController
 
   private
 
-    def get_pages
-      @pages = Spree::Page.order(:position).all
-    end
-
-    def parent
-	   @page ||= Spree::Page.find_by_path(params[:page_id])
-    end
-
-    def collection
-      params[:q] ||= {}
-      params[:q][:s] ||= "position asc"
-      @search = parent.contents.search(params[:q])
-      @collection = @search.result.page(params[:page]).per(Spree::Config[:orders_per_page])
-    end
+  def get_pages
+    @pages = Spree::Page.order(:position).all
+  end
+  
+  def parent
+    @page ||= Spree::Page.find_by_path("/" + params[:page_id])
+  end
+  
+  def collection
+    params[:q] ||= {}
+    params[:q][:s] ||= "position asc"
+    @search = parent.contents.search(params[:q])
+    @collection = @search.result.page(params[:page]).per(Spree::Config[:orders_per_page])
+  end
 
 end
