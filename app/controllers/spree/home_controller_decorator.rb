@@ -5,6 +5,7 @@ Spree::HomeController.class_eval do
   def index
     @searcher = Spree::Config.searcher_class.new(params)
     @products = @searcher.retrieve_products
+    @taxonomies = Spree::Taxonomy.includes(root: :children)
     render :template => "spree/pages/home"      
   end
   
