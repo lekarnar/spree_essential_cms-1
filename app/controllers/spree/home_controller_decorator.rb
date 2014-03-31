@@ -19,4 +19,4 @@ Spree::HomeController.class_eval do
       @page.meta_title unless @page.nil?
     end
   
-end
+end if Spree.const_defined? 'HomeController'
