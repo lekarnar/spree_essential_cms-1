@@ -22,6 +22,13 @@
   <%= error_message_on :page, :meta_keywords %>
 <% end %>
 
+
+<%= form.field_container :layout do %>
+  <%= form.label :layout, t('page.layout') %><br />
+  <%= form.select :layout, Page.allowed_layouts,:class => "select"  %>
+  <%= error_message_on :page, :layout %>
+<% end %>
+
 <%= form.field_container :accessible do %>
   <%= form.check_box :accessible, :class => "text"  %> &nbsp;
   <%= form.label :accessible, t('page.accessible') %>
@@ -39,11 +46,11 @@
 
   <%= form.field_container :visible do %>
     <%= form.check_box :visible, :class => "text" %> &nbsp;
-    <%= form.label :visible, t('page.visible') %> 
+    <%= form.label :visible, t('page.visible') %>
     &ndash; <em><%= t('page.explain_visible') %></em>
     <%= error_message_on :page, :visible %>
   <% end %>
-  
+
   <div id="field_nav_title">
     <%= form.field_container :nav_title do %>
       <%= form.label :nav_title, t('page.nav_title') %><br />
@@ -58,16 +65,16 @@
 //<![CDATA[
 
   $(document).ready(function() {
-  
+
   	$('#page_accessible').change(function(evt) {
       $('#field_path').toggle(this.checked);
     }).change();
-    
+
   	$('#page_visible').change(function(evt) {
       $('#field_nav_title').toggle(this.checked);
     }).change();
 
-  });     
-  
+  });
+
 //]]>
 </script>
