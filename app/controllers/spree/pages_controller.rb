@@ -18,7 +18,7 @@ class Spree::PagesController < Spree::BaseController
 
   def find_layout
     @page.get_layout if @page
-    true
+    nil
   end
 
   def accurate_title

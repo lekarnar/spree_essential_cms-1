@@ -59,8 +59,8 @@ class Spree::Page < ActiveRecord::Base
   end
 
   def get_layout
-    return layout if Page.allowed_layouts.include? layout
-    true
+    return layout if Spree::Page.allowed_layouts.include? layout
+    nil
   end
 
   private

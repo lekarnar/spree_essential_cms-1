@@ -25,7 +25,7 @@
 
 <%= form.field_container :layout do %>
   <%= form.label :layout, t('page.layout') %><br />
-  <%= form.select :layout, Page.allowed_layouts,:class => "select"  %>
+  <%= form.select :layout, Spree::Page.allowed_layouts,:class => "select"  %>
   <%= error_message_on :page, :layout %>
 <% end %>
 
