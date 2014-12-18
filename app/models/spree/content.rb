@@ -10,8 +10,8 @@ class Spree::Content < ActiveRecord::Base
   has_attached_file :attachment,
     :styles        => Proc.new{ |clip| clip.instance.attachment_sizes },
     :default_style => :preview,
-    :url           => "/spree/contents/:id/:style/:basename.:extension",
-    :path          => ":rails_root/public/spree/contents/:id/:style/:basename.:extension"
+    :path          => "/spree/contents/:attachment/:id/:style/:basename.:extension",
+    :url           => ":path"
   
   cattr_reader :per_page
   @@per_page = 10
