@@ -18,12 +18,12 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   
   # Spree Essentials
-  s.add_runtime_dependency('spree_essentials', github: 'waylon87/spree_essentials', branch: '2-3-stable')
+  #s.add_runtime_dependency('spree_essentials')
   
   s.add_dependency 'spree_core', '~> 2.3.0'
   
   # Development
-  s.add_development_dependency('spree_sample', '~> 2.3.stable')
+  #s.add_development_dependency('spree_sample', '~> 2.3.stable')
   s.add_development_dependency('dummier',      '~> 0.3.2')
   s.add_development_dependency('shoulda',      '~> 3.0.0')
   s.add_development_dependency('factory_girl', '~> 2.6.0')
