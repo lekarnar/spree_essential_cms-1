@@ -1,6 +1,4 @@
 class Spree::PageImage < Spree::Asset
-
-  validates_attachment_presence :attachment
   
   has_attached_file :attachment,
     :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
@@ -8,6 +6,8 @@ class Spree::PageImage < Spree::Asset
     :path => '/spree/pages/:attachment/:id/:style/:basename.:extension',
     :url => ':path'
     
+  validates_attachment_presence :attachment
+  
   validates_attachment :attachment,
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
