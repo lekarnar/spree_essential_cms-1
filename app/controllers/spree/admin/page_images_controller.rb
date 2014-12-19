@@ -2,9 +2,8 @@ class Spree::Admin::PageImagesController < Spree::Admin::ResourceController
   
   before_filter :load_data
 
-  before_create :set_viewable
-  before_update :set_viewable
-  before_destroy :destroy_before
+  before_filter :set_viewable, only: [ :create, :update ]
+  before_filter :destroy_before, only: :destroy
 
   def update_positions
     params[:positions].each do |id, index|
