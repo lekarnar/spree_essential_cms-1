@@ -11,6 +11,9 @@ class Spree::Content < ActiveRecord::Base
     :default_style => :preview,
     :path          => "/spree/contents/:attachment/:id/:style/:basename.:extension",
     :url           => ":path"
+    
+  validates_attachment :attachment,
+    content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
   
   cattr_reader :per_page
   @@per_page = 10
