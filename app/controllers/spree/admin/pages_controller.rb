@@ -18,6 +18,10 @@ class Spree::Admin::PagesController < Spree::Admin::ResourceController
       format.js  { render :text => 'Ok' }
     end
   end
+  
+  def destroy
+    @page = Spree::Page.where(id: params[:id]).first
+  end
 
   private
 
