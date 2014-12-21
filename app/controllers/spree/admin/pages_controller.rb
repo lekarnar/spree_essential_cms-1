@@ -21,14 +21,16 @@ class Spree::Admin::PagesController < Spree::Admin::ResourceController
   
   def destroy
     @page.destroy
-    redirect_to admin_pages_path
+    respond_to do |format|
+      format.html { redirect_to admin_pages_path }
+      format.js  { render :text => 'Ok' }
+    end
   end
 
   private
 
     def find_resource
-      #@page ||= ::Spree::Page.find_by_path("/" + params[:id])
-      @page ||= ::Spree::Page.find_by_path(params[:id])
+      @page ||= ::Spree::Page.find_by_path("/" + params[:id])
     end
     
     def collection
