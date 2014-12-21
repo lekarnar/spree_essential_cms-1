@@ -73,7 +73,8 @@ private
 
   def reprocess_images_if_context_changed
     return unless context_changed? && attachment_file_name.present?
-    attachment.reprocess!
+    self.attachment.reprocess!
+    self.save
   end
 
   def has_value(selector)
