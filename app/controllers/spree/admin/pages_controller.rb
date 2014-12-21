@@ -21,6 +21,8 @@ class Spree::Admin::PagesController < Spree::Admin::ResourceController
   
   def destroy
     @page = Spree::Page.where(id: params[:id]).first
+    @page.destroy
+    redirect :back
   end
 
   private
