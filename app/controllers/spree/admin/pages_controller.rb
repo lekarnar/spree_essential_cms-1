@@ -20,15 +20,15 @@ class Spree::Admin::PagesController < Spree::Admin::ResourceController
   end
   
   def destroy
-    @page = Spree::Page.where(id: params[:id]).first
     @page.destroy
-    redirect :back
+    redirect_to admin_pages_path
   end
 
   private
 
     def find_resource
-      @page ||= ::Spree::Page.find_by_path("/" + params[:id])
+      #@page ||= ::Spree::Page.find_by_path("/" + params[:id])
+      @page ||= ::Spree::Page.find_by_path(params[:id])
     end
     
     def collection
