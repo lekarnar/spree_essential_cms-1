@@ -21,7 +21,7 @@ class Spree::Content < ActiveRecord::Base
   scope :for, Proc.new{|context| where(:context => context)}
 
   before_update :delete_attachment!, :if => :delete_attachment
-  before_update :reprocess_images_if_context_changed, :if => "context_changed? && attachment_file_name.present?"
+  after_commit :reprocess_images_if_context_changed, :on => :update#, :if => "context_changed? && attachment_file_name.present?"
 
   [ :link_text, :link, :body ].each do |property|
     define_method "has_#{property.to_s}?" do
