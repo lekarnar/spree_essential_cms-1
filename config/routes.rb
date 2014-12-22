@@ -30,7 +30,7 @@ Spree::Core::Engine.routes.append do
   end
   
   constraints(Spree::PossiblePage) do
-    get '*page_path', :to => 'pages#show', :as => :static_page
+    get '*page_path', :to => 'pages#show', :as => :cms_page
   end
   
 end
