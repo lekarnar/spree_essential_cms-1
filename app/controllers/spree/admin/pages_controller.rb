@@ -11,7 +11,8 @@ class Spree::Admin::PagesController < Spree::Admin::ResourceController
 
   def update_positions
     params[:positions].each do |id, index|
-      Spree::Page.update_all(['position=?', index], ['id=?', id])
+      #Spree::Page.update_all(['position=?', index], ['id=?', id])
+      Spree::Page.find(id).update_attributes(position: index)
     end
     respond_to do |format|
       format.html { redirect_to admin_pages_path }

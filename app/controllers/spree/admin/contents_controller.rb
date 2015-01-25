@@ -9,8 +9,10 @@ class Spree::Admin::ContentsController < Spree::Admin::ResourceController
 
   def update_positions
     @page = parent
+    @contents = @page.contents
     params[:positions].each do |id, index|
-      @page.contents.update_all(['position=?', index], ['id=?', id])
+      #@page.contents.update_all(['position=?', index], ['id=?', id])
+      @contents.find(id).update_attributes(position: index)
     end
     respond_to do |format|
       format.html { redirect_to admin_page_contents_url(@page) }
