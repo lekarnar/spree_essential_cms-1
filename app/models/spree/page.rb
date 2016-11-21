@@ -58,6 +58,21 @@ class Spree::Page < ActiveRecord::Base
     write_attribute :path, value
   end
 
+  def siblings
+    p = path
+    if p.count("/") > 1
+      while p[p.size - 1] != "/"
+        p.chop!
+      end
+      p.chop!
+    end
+    Spree::Page.where(:visible => true).where("path LIKE ?",  p+"%").order("position")
+  end
+
+  def parent?
+    path.count("/") == 1
+  end
+
   def get_layout
     return layout if Spree::Page.allowed_layouts.include? layout
     nil
