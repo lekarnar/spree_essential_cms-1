@@ -1,22 +1,29 @@
+<style type="text/css">
+  .new-image, h4 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+</style>
+
 <%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => "Images"} unless request.xhr? %>
 
-<h3><%= t("new_image") %></h3>
+<h4><%= Spree.t("new_image") %></h4>
 
 <%= render 'spree/shared/error_messages', :target => @page_image %>
 
-<%= form_for(@page_image, :url => admin_page_images_path(@page), :html => { :multipart => true }) do |form| %>
-  <table class="basic-table">
+<%= form_for(@page_image, :url => admin_page_images_path(@page.path), :html => { :multipart => true }) do |form| %>
+  <div class="new-image">
     <%= render "form", :form => form %>
-  </table>
+  </div>
   <p class="form-buttons">
-    <%= button t("create") %>
-    or <%= link_to t("cancel"), "#", :id => "cancel_link" %>
+    <%= button Spree.t("create") %>
+    <%= Spree.t('or') %> <%= link_to Spree.t("cancel"), "#", :id => "cancel_link", class: "btn btn-danger" %>
   </p>
 <% end %>
 
-<script type="text/javascript">    
-  jQuery('#cancel_link').click(function (event) { 
+<script type="text/javascript">
+  jQuery('#cancel_link').click(function (event) {
     jQuery('#new_image_link').show();
     jQuery('#images').html('');
-  }); 
+  });
 </script>

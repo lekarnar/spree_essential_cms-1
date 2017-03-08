@@ -1,22 +1,31 @@
-<div class='toolbar'>
-  <ul class='actions'>
-    <li>
-      <p><%= button_link_to t('.new_content'), new_object_url, :icon => 'add' %></p>
-    </li>
-  </ul>
-  <br class='clear' />
-</div>
+<% content_for :page_title do %>
+  <%= t('.listing_contents') %>
+<% end %>
 
 <%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => 'Contents'} %>
 
-<h2><%= t('.listing_contents') %></h2>
+<div class="box">
+  <h4 style="text-align: center;"><%= t(:search) %></h4>
+  <%= search_form_for [:admin, @page, @search] do |f| %>
+    <div class="content-title">
+      <%= f.label :title_cont, t('content.title') %><br />
+      <%= f.text_field :title_cont, :size => 25, class: 'form-control' %>
+    </div>
+    <div class="content-context">
+      <%= f.label :context_cont, t('content.context') %><br />
+      <%= f.text_field :context_cont, :size => 25, class: 'form-control' %>
+    </div>
+    <div class="search"><%= button Spree.t("search") %></div>
+  <% end %>
+</div>
+<%#end %>
 
-<table class="index sortable" data-sortable-link="<%= update_positions_admin_page_contents_url(@page) -%>">
+<table class="table table-bordered index sortable" data-sortable-link="<%= update_positions_admin_page_contents_url(@page.path) -%>">
   <thead>
   <tr>
       <th><%= sort_link @search, :title, t("content.title") %></th>
       <th><%= sort_link @search, :context, t("content.context") %></th>
-      <th><%= t("action") %></th>
+      <th><%= Spree.t("action") %></th>
   </tr>
   </thead>
   <tbody>
@@ -35,19 +44,11 @@
 
 <%= paginate @collection %>
 
-<% content_for :sidebar do %>
-  <div class="box">
-    <h3><%= t(:search) %></h3>
-    <%= search_form_for [:admin, @page, @search] do |f| %>
-      <p>
-        <%= f.label :title_cont, t('content.title') %><br />
-        <%= f.text_field :title_cont, :size => 25 %>
-      </p>
-      <p>
-        <%= f.label :context_cont, t('content.context') %><br />
-        <%= f.text_field :context_cont, :size => 25 %>
-      </p>
-      <p><%= button t("search") %></p>
-    <% end %>
-  </div>
+<div id="new_content"></div>
+<% content_for :page_actions do %>
+  <li id="new_product_link">
+    <%= button_link_to t('.new_content'), new_object_url, { icon: 'icon-plus', class: 'btn btn-success' } %>
+  </li>
 <% end %>
+
+

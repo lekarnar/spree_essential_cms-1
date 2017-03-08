@@ -3,14 +3,13 @@
 <% if @page.try(:errors).present? %>
   <%= render 'spree/shared/error_messages', :target => @page %>
 <% end %>
-
 <h1><%= t('.new_page') %></h1>
 
 <%= form_for([:admin, @page], :html => { :multipart => true }) do |f| %>
   <%= render "form", :form => f %>
 
-  <p class="form-buttons">
-    <%= button t('create') %> <%= t('or') %> <%= link_to t('cancel'), collection_url %>
+  <p class="form-buttons" style="margin-top:20px;">
+    <%= button Spree.t('create') %> <%= Spree.t('or') %> <%= link_to Spree.t('cancel'), collection_url, class: 'btn btn-danger' %>
   </p>
 <% end %>
 
