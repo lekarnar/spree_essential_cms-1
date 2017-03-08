@@ -26,7 +26,7 @@ class Spree::Admin::ContentsController < Spree::Admin::ResourceController
 
   def parent
     id = params[:page_id]
-    if params[:page_id] = "_home_"
+    if params[:page_id] == "_home_"
       id = "/"
     else params[:page_id][0] != "/"
       id = "/" + params[:page_id]
