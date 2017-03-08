@@ -1,0 +1,27 @@
+.left-fields {
+  width: 40%;
+  float: left;
+  display: inline;
+  margin-top: 20px;
+}
+.right-text {
+  width: 50%;
+  float: left;
+  display: inline;
+  margin-left: 50px;
+}
+
+.page-title, .content-title {
+  float: left;
+  padding-right: 15px;
+  width: 50%;
+}
+.page-path, .content-context {
+  width: 50%;
+  float: right;
+  padding-left: 15px;
+}
+.search button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

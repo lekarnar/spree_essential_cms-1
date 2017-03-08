@@ -1,0 +1,60 @@
+sl:
+  page:
+    model_name: Stran
+    contents: Vsebine
+    title: Naslov
+    nav_title: Naslov v navigaciji
+    path: Pot
+    meta_title: Meta naslov
+    meta_description: Meta opis
+    meta_keywords: Meta ključne besede
+    accessible: Dostopno
+    visible: Vidno
+    explain_accessible: nedostopne strani so za posebno uporabo.
+    explain_visible: vidne strani se prikazujejo v menijih.
+
+  content:
+    model_name: Vsebina
+    page_title: Naslov strani
+    page: Stran
+    title: Naslov
+    body: Besedilo
+    attachment: Priponka
+    link: URL povezava
+    link_text: Besedilo povezave
+    context: Kontekst
+    hide_title: Skrij naslov
+    delete_attachment: Izbriši priponko
+
+  pages: Strani
+
+
+  spree:
+    admin:
+      subnav:
+        pages: Strani
+      shared:
+        contents_tab:
+          content: Vsebina
+        page_tabs:
+          editing_page: Urejanje strani
+          page_details: Podrobnosti strani
+          contents: Vsebine
+          images: Slike
+      pages:
+        index:
+          title: Naslov
+          listing_pages: Strani
+          new_page: Nova stran
+          title_contains: Naslov
+        new:
+          new_page: Nova stran
+
+      contents:
+        index:
+          new_content: Nova vsebina
+          listing_contents: Vsebine
+        new:
+          new_content: Nova vsebina
+        edit:
+          edit_content: Uredi vsebino
