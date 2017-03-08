@@ -1,31 +1,37 @@
+<style type="text/css">
+  .field {
+    margin-top: 20px;
+  }
+</style>
+
 <%= form.field_container :title do %>
   <%= form.label :title, t('page.title') %> <span class="required">*</span><br />
-  <%= form.text_field :title, :class => "title"  %>
+  <%= form.text_field :title, :class => "title form-control"  %>
   <%= error_message_on :page, :title %>
 <% end %>
 
 <%= form.field_container :meta_title do %>
   <%= form.label :meta_title, t('page.meta_title') %><br />
-  <%= form.text_field :meta_title, :class => "text"  %>
+  <%= form.text_field :meta_title, :class => "text, form-control"  %>
   <%= error_message_on :page, :meta_title %>
 <% end %>
 
 <%= form.field_container :meta_description do %>
   <%= form.label :meta_description, t('page.meta_description') %><br />
-  <%= form.text_field :meta_description, :class => "text"  %>
+  <%= form.text_field :meta_description, :class => "text form-control"  %>
   <%= error_message_on :page, :meta_description %>
 <% end %>
 
 <%= form.field_container :meta_keywords do %>
   <%= form.label :meta_keywords, t('page.meta_keywords') %><br />
-  <%= form.text_field :meta_keywords, :class => "text"  %>
+  <%= form.text_field :meta_keywords, :class => "text form-control"  %>
   <%= error_message_on :page, :meta_keywords %>
 <% end %>
 
 
 <%= form.field_container :layout do %>
   <%= form.label :layout, t('page.layout') %><br />
-  <%= form.select :layout, Spree::Page.allowed_layouts,:class => "select"  %>
+  <%= form.select :layout, Spree::Page.allowed_layouts, {},:class => "select2"  %>
   <%= error_message_on :page, :layout %>
 <% end %>
 
@@ -40,7 +46,7 @@
 
   <%= form.field_container :path do %>
     <%= form.label :path, t('page.path') %><br />
-    <%= form.text_field :path, :class => "text"  %>
+    <%= form.text_field :path, :class => "text form-control"  %>
     <%= error_message_on :page, :path %>
   <% end %>
 
@@ -54,7 +60,7 @@
   <div id="field_nav_title">
     <%= form.field_container :nav_title do %>
       <%= form.label :nav_title, t('page.nav_title') %><br />
-      <%= form.text_field :nav_title, :class => "text"  %>
+      <%= form.text_field :nav_title, :class => "text form-control"  %>
       <%= error_message_on :page, :nav_title %>
     <% end %>
   </div>

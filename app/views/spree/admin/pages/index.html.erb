@@ -1,15 +1,23 @@
-<div class='toolbar'>
-  <ul class='actions'>
-    <li>
-      <p><%= button_link_to t('.new_page'), new_object_url, :icon => 'add' %></p>
-    </li>
-  </ul>
-  <br class='clear' />
+<% content_for :page_title do %>
+  <%= t('.listing_pages') %>
+<% end %>
+
+<div class="box">
+  <h4 style="text-align: center;"><%= t(:search) %></h4>
+  <%= search_form_for [:admin, @search] do |f| %>
+    <div class="page-title">
+      <%= f.label :title_cont, t('page.title') %><br />
+      <%= f.text_field :title_cont, :size => 25, class: 'form-control' %>
+    </div>
+    <div class="page-path">
+      <%= f.label :path_cont, t('page.path') %><br />
+      <%= f.text_field :path_cont, :size => 25, class: 'form-control' %>
+    </div>
+    <div class="search"><%= button Spree.t("search") %></div>
+  <% end %>
 </div>
 
-<h1><%= t('.listing_pages') %></h1>
-
-<table class="index sortable" data-sortable-link="<%= update_positions_admin_pages_url -%>">
+<table class="table table-bordered index sortable" data-sortable-link="<%= update_positions_admin_pages_url -%>">
   <thead>
   <tr>
       <th><%= sort_link @search, :title, t("page.title") %></th>
@@ -29,8 +37,8 @@
       <td>
         <%= link_to_with_icon :accept, t('preview'), page.path, :onclick => 'window.open(this.href);return false;' %> &nbsp;
         <%= link_to_with_icon :pages, t('page.contents'), admin_page_contents_path(page) %> &nbsp;
-        <%= link_to_edit page %> &nbsp;
-        <%= link_to_delete page %>
+        <%= link_to_edit page.path %> &nbsp;
+        <%= link_to_delete page.path %>
       </td>
     </tr>
     <% end %>
@@ -39,19 +47,10 @@
 
 <%= paginate @collection %>
 
-<% content_for :sidebar do %>
-  <div class="box">
-    <h3><%= t(:search) %></h3>
-    <%= search_form_for [:admin, @search] do |f| %>
-      <p>
-        <%= f.label :title_cont, t('page.title') %><br />
-        <%= f.text_field :title_cont, :size => 25 %>
-      </p>
-      <p>
-        <%= f.label :path_cont, t('page.path') %><br />
-        <%= f.text_field :path_cont, :size => 25 %>
-      </p>
-      <p><%= button t("search") %></p>
-    <% end %>
-  </div>
+<div id="new_page"></div>
+<% content_for :page_actions do %>
+  <li id="new_product_link">
+    <%= button_link_to t('.new_page'), new_object_url, { icon: 'icon-plus', class: 'btn btn-success' } %>
+  </li>
 <% end %>
+

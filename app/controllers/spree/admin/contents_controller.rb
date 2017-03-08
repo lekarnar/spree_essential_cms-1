@@ -23,11 +23,17 @@ class Spree::Admin::ContentsController < Spree::Admin::ResourceController
   def get_pages
     @pages = Spree::Page.order(:position).all
   end
-  
+
   def parent
-    @page ||= Spree::Page.find_by_path("/" + params[:page_id])
+    id = params[:page_id]
+    if params[:page_id] = "_home_"
+      id = "/"
+    else params[:page_id][0] != "/"
+      id = "/" + params[:page_id]
+    end
+    @page ||= Spree::Page.find_by_path(id)
   end
-  
+
   def collection
     params[:q] ||= {}
     params[:q][:s] ||= "position asc"

@@ -1,5 +1,5 @@
 class Spree::Admin::PageImagesController < Spree::Admin::ResourceController
-  
+
   before_filter :load_data
 
   create.before :set_viewable
@@ -14,15 +14,15 @@ class Spree::Admin::PageImagesController < Spree::Admin::ResourceController
       format.js  { render :text => 'Ok' }
     end
   end
-  
+
   private
-  
+
   def location_after_save
-    admin_page_images_url(@page)
+    admin_page_images_url(@page.path)
   end
 
   def load_data
-    @page = Spree::Page.find_by_path("/" + params[:page_id])
+    @page = Spree::Page.find_by_path(params[:page_id])
   end
 
   def set_viewable

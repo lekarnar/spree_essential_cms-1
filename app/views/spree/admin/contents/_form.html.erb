@@ -1,29 +1,41 @@
 <%= form.field_container :title do %>
   <%= form.label :title, t('content.title') %><br />
-  <%= form.text_field :title, :class => "title"  %>
+  <%= form.text_field :title, :class => "title form-control"  %>
   <%= error_message_on :content, :title %>
 <% end %>
 
 <%= form.field_container :page do %>
   <%= form.label :page_id, t('content.page') %><br />
-  <%= form.select :page_id, @pages.collect{|i| [i.title, i.id]}  %>
+  <%= form.select :page_id, @pages.collect{|i| [i.title, i.id]}, {}, {class: 'select2'}  %>
   <%= error_message_on :content, :page_id %>
 <% end %>
 
 <%= form.field_container :body do %>
-  <%= form.label :title, t('content.body') %><%= markdown_helper %><br />
-  <%= form.text_area :body  %>
+  <%= form.label :title, t('content.body') %><br />
+  <%= form.text_area :body, class: 'tinymce'  %>
   <%= error_message_on :content, :body %>
 <% end %>
 
-<p><%= link_to "Optional Fields <span>&#9650;</span>".html_safe, "#options", :id => "btn_optional" %></p>
-
-<div class="optional" style="display: none;">
+<div class="left-fields four columns alpha" style="">
 
   <%= form.field_container :context do %>
     <%= form.label :context, t('content.context') %><br />
-    <%= form.text_field :context, :class => "text"  %>
+    <%= form.select :context, options_for_select(["top", "content", "botom", "side_top", "side", "side_bottom", "slider", "slider_side"],:disabled => ["Izberi kontekst"], :selected => @content.context), {}, class: 'select2' %>
+    <%# form.text_field :context, :class => "text"  %>
     <%= error_message_on :content, :context %>
+  <% end %>
+
+  <%= form.field_container :template do %>
+    <%= form.label :template, t('content.template') %><br />
+    <%= form.select :template, options_for_select(["general", "text", "boxed", "faq", "stripe_ad", "featured_product"],:disabled => ["Izberi template"], :selected => @content.template), {}, class: 'select2' %>
+    <%# form.text_field :template, :class => "text"  %>
+    <%= error_message_on :content, :template %>
+  <% end %>
+
+  <%= form.field_container :css_class do %>
+    <%= form.label :css_class, t('content.css_class') %><br />
+    <%= form.text_field :css_class, :class => "text form-control"  %>
+    <%= error_message_on :content, :css_class %>
   <% end %>
 
   <%= form.field_container :attachment do %>
@@ -31,49 +43,82 @@
     <%= form.file_field :attachment %>
     <%= error_message_on :content, :attachment %>
   <% end %>
-  
+
   <% if @content.attachment.exists?(:mini) %>
     <%= form.field_container :delete_attachment do %>
       <%= form.check_box :delete_attachment %>
       <%= form.label :delete_attachment, t('content.delete_attachment') %><br />
     <% end %>
   <% end %>
-  
+
   <% if @content.attachment.exists?(:mini) %>
     <p><%= image_tag @content.attachment.url(:mini) %></p>
   <% end %>
 
   <%= form.field_container :link do %>
     <%= form.label :link, t('content.link') %><br />
-    <%= form.text_field :link, :class => "text"  %>
+    <%= form.text_field :link, :class => "text form-control"  %>
     <%= error_message_on :content, :link %>
   <% end %>
-  
+
   <%= form.field_container :link_text do %>
     <%= form.label :link_text, t('content.link_text') %><br />
-    <%= form.text_field :link_text, :class => "text"  %>
+    <%= form.text_field :link_text, :class => "text form-control"  %>
     <%= error_message_on :content, :link_text %>
   <% end %>
-  
+
   <%= form.field_container :hide_title do %>
     <%= form.check_box :hide_title, :class => "checkbox"  %>
     <%= form.label :hide_title, t('content.hide_title') %><br />
     <%= error_message_on :content, :hide_title %>
   <% end %>
 
+  <%= form.field_container :ignore_params do %>
+    <%= form.check_box :ignore_params, :class => "checkbox"  %>
+    <%= form.label :ignore_params, t('content.ignore_params') %><br />
+    <%= error_message_on :content, :ignore_params %>
+  <% end %>
+
+</div>
+<div class="right-text eight columns omega">
+  <h3>Kontekst</h3>
+  <p>Pozicija na strani. Konteksti delujejo, če je na strani za njih predviden prostor</p>
+  <ul>
+    <li>top - na vrhu nad glavno vsebino</li>
+    <li>content - med glavno vsebino</li>
+    <li>bottom - pod glavno vsebino</li>
+    <li>sidebar_top - na vrhu nad stransko vsebino</li>
+    <li>sidebar - med stransko vsebino</li>
+    <li>sidebar_bottom - pod stransko vsebino</li>
+    <li>slide - jumbo oglas: file je slika, povezava je link, besedilo povezave je link title ali z vejicami ločeni id drugih vsebin s kontekstom slide npr. 45,56,46,52</li>
+  </ul>
+  <br>
+  <h3>Template</h3>
+  <p>Tip in izgled vsebine. Template določa izgled vsebine in način uporabe posameznih polj iz obrazca</p>
+  <ul>
+    <li>general</li>
+    <li>text</li>
+    <li>boxed</li>
+    <li>faq</li>
+    <li>stripe_ad</li>
+    <li>featured_product</li>
+  </ul>
+  <br>
+  <h3>CSS Class</h3>
+  <p>doda css class elementu v katerem se prikazuje vsebina</p>
+  <br><br>
 </div>
 
 <% content_for :head do %>
   <script type="text/javascript">
   //<![CDATA[
-    $(document).ready(function() {
-      $('#content_body').markItUp(markdownSettings);
-      $('#btn_optional').click(function(evt) {
-        evt.preventDefault();
-        var vis = $('.optional').toggle().css('display') == 'block';
-        $(this).find('span').html(vis ? '&#9660;' : '&#9650;');
-      });
-    }); 
+     $(document).ready(function() {
+       $('#btn_optional').click(function(evt) {
+         evt.preventDefault();
+         var vis = $('.optional').toggle().css('display') == 'block';
+         $(this).find('span').html(vis ? '&#9660;' : '&#9650;');
+        });
+     });
   //]]>
   </script>
 <% end %>
