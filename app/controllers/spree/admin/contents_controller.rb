@@ -28,7 +28,7 @@ class Spree::Admin::ContentsController < Spree::Admin::ResourceController
     id = params[:page_id]
     if params[:page_id] == "_home_"
       id = "/"
-    else params[:page_id][0] != "/"
+    elsif params[:page_id][0] != "/"
       id = "/" + params[:page_id]
     end
     @page ||= Spree::Page.find_by_path(id)
