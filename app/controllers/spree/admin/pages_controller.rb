@@ -22,7 +22,13 @@ class Spree::Admin::PagesController < Spree::Admin::ResourceController
   private
 
     def find_resource
-      @page ||= ::Spree::Page.find_by_path(params[:id])
+      id = params[:id]
+      if params[:id] == "_home_"
+        id = "/"
+      elsif params[:id][0] != "/"
+        id = "/" + params[:id]
+      end
+      @page ||= ::Spree::Page.find_by_path(id)
     end
 
     def collection
