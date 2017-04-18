@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= t('.listing_images') %>
+  <%= Spree.t('listing_images') %>
 <% end %>
 
 <%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => "Images"} %>
@@ -7,9 +7,9 @@
 <table class="table table-bordered index sortable" data-sortable-link="<%= update_positions_admin_page_images_url(@page) -%>">
   <thead>
     <tr>
-      <th><%= t("thumbnail") %></th>
-      <th><%= t("alt_text") %></th>
-      <th><%= t("action") %></th>
+      <th><%= Spree.t("thumbnail") %></th>
+      <th><%= Spree.t("alt_text") %></th>
+      <th><%= Spree.t("action") %></th>
     </tr>
   </thead>
   <tbody>

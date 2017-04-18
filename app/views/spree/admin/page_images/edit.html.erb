@@ -7,7 +7,7 @@
 <%= form_for([:admin, @page.id, @page_image], :url => admin_page_image_url(@page, @page_image), :html => { :multipart => true }) do |f| %>
   <div style="margin-top:25px; margin-bottom:25px;">
     <p>
-      <%= label_tag ("thumbnail") %>:<br/>
+      <%= label_tag Spree.t("thumbnail") %>:<br/>
       <%= link_to(image_tag(@page_image.attachment.url(:mini)), @page_image.attachment.url(:product)) %>
     </p>
     <%= render "form", :form => f %>
