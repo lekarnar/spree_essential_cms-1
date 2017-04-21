@@ -22,7 +22,13 @@ class Spree::Admin::PageImagesController < Spree::Admin::ResourceController
   end
 
   def load_data
-    @page = Spree::Page.find_by_path(params[:page_id])
+    id = params[:page_id]
+    if params[:page_id] == "_home_"
+      id = "/"
+    elsif params[:page_id][0] != "/"
+      id = "/" + params[:page_id]
+    end
+    @page = Spree::Page.find_by_path(id)
   end
 
   def set_viewable

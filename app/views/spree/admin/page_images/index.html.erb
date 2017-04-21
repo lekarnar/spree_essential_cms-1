@@ -18,7 +18,7 @@
         <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:large)) %></td>
         <td><%= image.alt %></td>
         <td class="actions">
-          <%= link_to_with_icon('edit', t("edit"), edit_admin_page_image_url(@page.path, image), class: 'btn btn-sm btn-primary') %>
+          <%= link_to_with_icon('edit', Spree.t("edit"), edit_admin_page_image_url(@page.path, image), class: 'btn btn-sm btn-primary') %>
           &nbsp;
           <%= link_to_delete image, {:url => admin_page_image_url(@page.path, image) }%>
         </td>
