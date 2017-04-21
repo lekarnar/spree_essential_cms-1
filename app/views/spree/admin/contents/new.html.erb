@@ -1,3 +1,10 @@
+<%= tinymce_assets %>
+<script type="text/javascript">
+    $(window).load(function() {
+      <%= tinymce_javascript %>
+    });
+</script>
+
 <%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => 'Contents'} %>
 
 <% if @content.try(:errors).present? %>
@@ -10,7 +17,7 @@
   <%= render "form", :form => f %>
 
   <p class="form-buttons">
-    <%= button t("create") %> <%= Spree.t('or') %> <%= link_to t('cancel'), collection_url %>
+    <%= button t("create") %> <%= Spree.t('or') %> <%= link_to Spree.t('cancel'), collection_url, class: 'btn btn-danger' %>
   </p>
 <% end %>
 
