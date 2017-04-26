@@ -29,11 +29,11 @@
 <% end %>
 
 
-<%= form.field_container :layout do %>
-  <%= form.label :layout, t('page.layout') %><br />
-  <%= form.select :layout, Spree::Page.allowed_layouts, {},:class => "select2"  %>
-  <%= error_message_on :page, :layout %>
-<% end %>
+<%#= form.field_container :layout do %>
+  <%#= form.label :layout, t('page.layout') %><br />
+  <%#= form.select :layout, Spree::Page.allowed_layouts, {},:class => "select2"  %>
+  <%#= error_message_on :page, :layout %>
+<%# end %>
 
 <%= form.field_container :accessible do %>
   <%= form.check_box :accessible, :class => "text"  %> &nbsp;
