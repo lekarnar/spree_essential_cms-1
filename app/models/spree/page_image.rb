@@ -19,8 +19,8 @@ class Spree::PageImage < Spree::Asset
   def attachment_sizes
     sizes = {}
     if image_content?
-      sizes.merge!(:mini => '48x48>', :small => '150x150>', :medium => '800x800#', :large => '1000x1000#')
-      sizes.merge!(:slide => '1500x') if viewable.respond_to?(:root?) && viewable.root?
+      sizes.merge!(:mini => '48x48>', :small => '150x150>', :medium => '420x300>', :large => '900x650>')
+      sizes.merge!(:slide => '950x250#') if viewable.respond_to?(:root?) && viewable.root?
     end
     sizes
   end
