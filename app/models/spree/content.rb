@@ -9,8 +9,8 @@ class Spree::Content < ActiveRecord::Base
   has_attached_file :attachment,
     :styles        => Proc.new{ |clip| clip.instance.attachment_sizes },
     :default_style => :preview,
-    :path          => "/spree/contents/:id/:style/:basename.:extension",
-    :url           => ":path"
+    :path          => ":rails_root/public/spree/contents/:id/:style/:basename.:extension",
+    :url           => "/spree/contents/:id/:style/:basename.:extension"
 
   validates_attachment :attachment, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
