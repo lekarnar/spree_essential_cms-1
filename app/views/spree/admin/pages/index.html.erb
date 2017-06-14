@@ -37,8 +37,8 @@
       <td>
         <%= link_to_with_icon :accept, t('preview'), page.path, :onclick => 'window.open(this.href);return false;' %> &nbsp;
         <%= link_to_with_icon :pages, t('page.contents'), admin_page_contents_path(page) %> &nbsp;
-        <%= link_to_edit page.path %> &nbsp;
-        <%= link_to_delete page.path %>
+        <%= link_to_edit page.path, :no_text => true %> &nbsp;
+        <%= link_to_delete page.path, :no_text => true %>
       </td>
     </tr>
     <% end %>
